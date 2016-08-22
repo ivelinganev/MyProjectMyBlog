@@ -4,16 +4,16 @@
 @model IEnumerable<MyProjectMyBlog.Models.Post>
 
 <div class="jumbotron">
-    <h1 id="top-build">RENT A HOME</h1>
+    <h1 id="top-build">Music</h1>
 </div>
 
 <section class="row">
      @foreach (var post in Model)
      {
         <article class="post col-md-4">
-            <h2>@post.Title</h2>
+            <h2 class="title">@post.Title</h2>
             <div>
-                Публикувано на тази дата:<i>@post.Date</i>
+                Публикувано:<i>@post.Date</i>
                 @if (@post.Auhtor != null)
                 {
                     @:от <i>@post.Auhtor.FullName (@post.Auhtor.UserName)</i>

@@ -316,6 +316,7 @@ body {
   line-height: 1.428571429;
   color: #333333;
   background-color: #ffffff;
+  margin:10px;
 }
 
 input,
@@ -517,6 +518,7 @@ h1,
 h2,
 .h2 {
   font-size: 30px;
+  background:#eeeeee
 }
 
 h3,
@@ -1094,6 +1096,7 @@ pre code {
   .col-md-10,
   .col-md-11 {
     float: left;
+    
   }
   .col-md-1 {
     width: 8.333333333333332%;
@@ -1105,7 +1108,7 @@ pre code {
     width: 25%;
   }
   .col-md-4 {
-    width: 33.33333333333333%;
+    width: 33%;
   }
   .col-md-5 {
     width: 41.66666666666667%;
