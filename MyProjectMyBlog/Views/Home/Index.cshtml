@@ -10,9 +10,9 @@
 <section class="row">
      @foreach (var post in Model)
      {
-        <article class="post col-md-4">
+        <article class="post col-md-6">
             <h2 class="title">@post.Title</h2>
-            <div>
+            <div class="title">
                 Публикувано:<i>@post.Date</i>
                 @if (@post.Auhtor != null)
                 {
