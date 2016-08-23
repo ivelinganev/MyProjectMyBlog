@@ -24,7 +24,10 @@ textarea {
     max-width: 280px;
 }
 .post {
-    background:#EEE;
+    background:#36465d;
     border-radius: 5px;
-    margin: 10px;
+}
+.navbar-collapse{
+    font-weight:bolder;
+    font-weight:600;
 }
