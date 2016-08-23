@@ -1,4 +1,6 @@
-﻿@{
+﻿@using MyProjectMyBlog.Classes;
+@using MyProjectMyBlog.Models;
+@{
     ViewBag.Title = "Home Page";
 }
 @model IEnumerable<MyProjectMyBlog.Models.Post>
@@ -11,16 +13,15 @@
      @foreach (var post in Model)
      {
         <article class="post col-md-6">
-            <h2 class="title">@post.Title</h2>
+            <h2 class="title">@post.Artist - @post.Title</h2>
             <div class="title">
-                Публикувано:<i>@post.Date</i>
                 @if (@post.Auhtor != null)
                 {
                     @:от <i>@post.Auhtor.FullName (@post.Auhtor.UserName)</i>
                 }
             </div>
-            <p>@post.Body</p>
+            <p>@Utils.CutText(post.Body)</p>
+                Публикувано:<i>@post.Date</i>
         </article>
      }
-    
 </section>

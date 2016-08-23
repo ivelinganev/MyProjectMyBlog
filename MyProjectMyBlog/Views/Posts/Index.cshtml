@@ -1,4 +1,6 @@
-﻿@model IEnumerable<MyProjectMyBlog.Models.Post>
+﻿@using MyProjectMyBlog.Classes;
+@using MyProjectMyBlog.Models;
+@model IEnumerable<Post>
 
 @{
     ViewBag.Title = "Index";
@@ -42,19 +44,19 @@
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Body)
+                @Utils.CutText(item.Body)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @if (item.Auhtor == null)
+                @if (item.Auhtor != null)
                 {
-                    <i>No Author</i>
+                    @item.Auhtor.FullName
                 }
                 else
                 {
-                    @Html.DisplayFor(modelItem => item.Auhtor.FullName)
+                    <i>No Author</i>
                 }
             </td>
             <td>

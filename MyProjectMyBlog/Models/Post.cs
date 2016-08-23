@@ -27,6 +27,7 @@ namespace MyProjectMyBlog.Models
         //public string Link { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         public string Body { get; set; }
         
 

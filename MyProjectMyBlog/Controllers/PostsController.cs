@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using MyProjectMyBlog.Models;
+using System.Linq;
+using System;
 
 namespace MyProjectMyBlog.Controllers
 {
+    [ValidateInput(false)]
     public class PostsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -17,8 +15,10 @@ namespace MyProjectMyBlog.Controllers
         // GET: Posts
         public ActionResult Index()
         {
-            var posts = db.Posts.Include(p => p.Auhtor).ToList();
-            return View(posts);
+            var postsWithAuthors = db.Posts
+                .Include(p => p.Auhtor)
+                .ToList();
+            return View(postsWithAuthors);
         }
 
         // GET: Posts/Details/5
@@ -51,6 +51,8 @@ namespace MyProjectMyBlog.Controllers
         {
             if (ModelState.IsValid)
             {
+                post.Auhtor = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+                post.Date = DateTime.Now;
                 db.Posts.Add(post);
                 db.SaveChanges();
                 return RedirectToAction("Index");

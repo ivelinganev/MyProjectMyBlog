@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 
+
 namespace MyProjectMyBlog.Controllers
 {
     public class HomeController : Controller
@@ -14,11 +15,12 @@ namespace MyProjectMyBlog.Controllers
 
         public ActionResult Index()
         {
+            var db = new ApplicationDbContext();
             var lastestPosts = db.Posts
                 .Include(p => p.Auhtor)
                 .OrderByDescending(p => p.Date).Take(6);
 
-            return View(lastestPosts);
+            return View(lastestPosts.ToList());
         }
     }
 }

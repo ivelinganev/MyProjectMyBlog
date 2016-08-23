@@ -6841,7 +6841,7 @@ table > tbody > tr > td,
 .table > tbody > tr > td,
 table > tfoot > tr > td,
 .table > tfoot > tr > td {
-  border-color: transparent;
+  border-color: #98fccb;
 }
 input,
 textarea {
