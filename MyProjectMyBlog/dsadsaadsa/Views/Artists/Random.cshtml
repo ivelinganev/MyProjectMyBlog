@@ -1,0 +1,30 @@
+﻿@using MyProjectMyBlog.Models
+@model MyProjectMyBlog.ViewModels.RandomArtistViewModel
+@{
+    ViewBag.Title = "Artists";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*
+    This is comment
+    On multiply    
+*@
+@{ 
+    var className = Model.Customers.Count > 0 ? "popular" : null;
+}
+
+<h2 class="@className">@Model.Artist.Name</h2>
+
+@if (Model.Customers.Count == 0)
+{
+    <text>Никой не е наел диска</text>
+}
+else
+{
+    <ul>
+
+        @foreach (var customer in Model.Customers)
+        {
+            <li>@customer.Name</li>
+        }
+    </ul>
+}
