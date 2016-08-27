@@ -1,0 +1,28 @@
+﻿@using MyProjectMyBlog.Classes;
+@using MyProjectMyBlog.Models;
+@{
+    ViewBag.Title = "Home Page";
+}
+@model IEnumerable<MyProjectMyBlog.Models.Post>
+
+<div class="jumbotron">
+    <h1 id="top-build">Music</h1>
+</div>
+
+<section class="row">
+     @foreach (var post in Model)
+     {
+        <article class="post col-md-6">
+            <h2 class="title">@post.Artist - @post.Title</h2>
+            <div class="title">
+                @if (@post.Auhtor != null)
+                {
+                    @:от <i>@post.Auhtor.FullName (@post.Auhtor.UserName)</i>
+                }
+            </div>
+            <p>@Utils.CutText(post.Lyrics)</p>
+                Публикувано на: <i>@post.Date</i>
+        </article>
+     }
+
+</section>

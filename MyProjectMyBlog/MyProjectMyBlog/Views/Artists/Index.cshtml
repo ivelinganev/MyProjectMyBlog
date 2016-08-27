@@ -1,0 +1,11 @@
+﻿@model IEnumerable<MyProjectMyBlog.Models.Artists>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Hey this is my new page with Artists</h2>
+
+@foreach (var item in Model)
+{
+    <p>Artist name: @item.FirstName @item.LastName <br>Born in: @item.BornIn</p>
+}
