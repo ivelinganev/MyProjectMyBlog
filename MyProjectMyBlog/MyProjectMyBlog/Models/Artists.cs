@@ -13,6 +13,10 @@ namespace MyProjectMyBlog.Models
 
         [Required]
         [StringLength(100)]
+        public string Alias { get; set; }
+
+        [Required]
+        [StringLength(100)]
         public string FirstName { get; set; }
 
         [Required]
@@ -20,6 +24,8 @@ namespace MyProjectMyBlog.Models
         public string LastName { get; set; }
 
         public string BornIn { get; set; }
+
+        public string Biography { get; set; }
 
 
     }

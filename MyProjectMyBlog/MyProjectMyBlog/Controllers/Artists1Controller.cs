@@ -46,7 +46,7 @@ namespace MyProjectMyBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Born In")] Artists artists)
+        public ActionResult Create([Bind(Include = "Id,Alias,FirstName,LastName,Born In,Biography")] Artists artists)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace MyProjectMyBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,BornIn")] Artists artists)
+        public ActionResult Edit([Bind(Include = "Id,Alias,FirstName,LastName,BornIn,Biography")] Artists artists)
         {
             if (ModelState.IsValid)
             {

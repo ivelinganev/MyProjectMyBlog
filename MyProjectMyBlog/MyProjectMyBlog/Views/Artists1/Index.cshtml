@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            Alias
+        </th>
+        <th>
             First name
         </th>
         <th>
@@ -32,6 +35,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+@Html.DisplayFor(modelItem => item.Alias)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.FirstName)
         </td>
         <td>
@@ -41,7 +47,7 @@
             @Html.DisplayFor(modelItem => item.BornIn)
         </td>
         <td>
-            
+            @Html.DisplayFor(modelItem => item.Biography)
         </td>
 
         <td>
