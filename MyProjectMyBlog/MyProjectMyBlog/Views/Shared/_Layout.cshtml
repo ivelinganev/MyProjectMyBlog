@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My music</title>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,21 +23,24 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Songs", "Index", "Posts")</li>
-                    <li>@Html.ActionLink("Add Song", "Create", "Posts")</li>
-                    <li>@Html.ActionLink("Artists", "Index", "Artists1")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink("Add Song", "Create", "Posts")</li>
+                        <li>@Html.ActionLink("Artists", "Index", "Artists1")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div class="container body-content">
+        @Html.Partial("_Notifications")
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My music space</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using MyProjectMyBlog.Models;
+using MyProjectMyBlog.Extensions;
 
 namespace MyProjectMyBlog.Controllers
 {
+    [ValidateInput(false)]
     public class Artists1Controller : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -36,6 +38,7 @@ namespace MyProjectMyBlog.Controllers
         }
 
         // GET: Artists1/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -45,13 +48,15 @@ namespace MyProjectMyBlog.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Alias,FirstName,LastName,Born In,Biography")] Artists artists)
+        public ActionResult Create([Bind(Include = "Id,Alias,FirstName,LastName,Biography")] Artists artists)
         {
             if (ModelState.IsValid)
             {
                 db.Artists.Add(artists);
                 db.SaveChanges();
+                this.AddNotification("Added Artist", NotificationType.INFO);
                 return RedirectToAction("Index");
             }
 
@@ -77,8 +82,9 @@ namespace MyProjectMyBlog.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles ="Administrators,Helper")]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Alias,FirstName,LastName,BornIn,Biography")] Artists artists)
+        public ActionResult Edit([Bind(Include = "Id,Alias,FirstName,LastName,Biography")] Artists artists)
         {
             if (ModelState.IsValid)
             {
@@ -90,6 +96,7 @@ namespace MyProjectMyBlog.Controllers
         }
 
         // GET: Artists1/Delete/5
+        [Authorize(Roles = "Administrators")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +112,7 @@ namespace MyProjectMyBlog.Controllers
         }
 
         // POST: Artists1/Delete/5
+        [Authorize(Roles = "Administrators")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

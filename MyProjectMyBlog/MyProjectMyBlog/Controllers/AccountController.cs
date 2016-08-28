@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using MyProjectMyBlog.Models;
+using MyProjectMyBlog.Extensions;
 
 namespace MyProjectMyBlog.Controllers
 {
@@ -70,7 +71,8 @@ namespace MyProjectMyBlog.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(model);
+                
+                return this.View(model);
             }
 
             // This doesn't count login failures towards account lockout
@@ -79,7 +81,8 @@ namespace MyProjectMyBlog.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    this.AddNotification("Success login!", NotificationType.SUCCESS);
+                    return this.RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -161,20 +164,21 @@ namespace MyProjectMyBlog.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    this.AddNotification("Success Registration!", NotificationType.INFO);
 
-                    return RedirectToAction("Index", "Home");
+                    return this.RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return this.View(model);
         }
 
         //
@@ -397,7 +401,8 @@ namespace MyProjectMyBlog.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            this.AddNotification("You are logged off.", NotificationType.INFO);
+            return this.RedirectToAction("Index", "Home");
         }
 
         //

@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using MyProjectMyBlog.Models;
 using System.Linq;
 using System;
+using MyProjectMyBlog.Extensions;
 
 namespace MyProjectMyBlog.Controllers
 {
@@ -58,6 +59,7 @@ namespace MyProjectMyBlog.Controllers
                 post.Date = DateTime.Now;
                 db.Posts.Add(post);
                 db.SaveChanges();
+                this.AddNotification("Song is added to list", NotificationType.INFO);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +67,7 @@ namespace MyProjectMyBlog.Controllers
         }
 
         // GET: Posts/Edit/5
-        [Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Administrators,Helper")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,12 +87,13 @@ namespace MyProjectMyBlog.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Administrators")]
+        [Authorize(Roles = "Administrators,Helper")]
         public ActionResult Edit([Bind(Include = "Id,Artist,Title,Lyrics,Date,Author,CommentsCount")] Post post)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(post).State = EntityState.Modified;
+                post.Date = DateTime.Now;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

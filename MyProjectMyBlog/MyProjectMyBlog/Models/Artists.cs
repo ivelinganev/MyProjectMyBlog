@@ -23,8 +23,7 @@ namespace MyProjectMyBlog.Models
         [StringLength(100)]
         public string LastName { get; set; }
 
-        public string BornIn { get; set; }
-
+        [DataType(DataType.MultilineText)]
         public string Biography { get; set; }
 
 

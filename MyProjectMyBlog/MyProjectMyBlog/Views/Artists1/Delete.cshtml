@@ -1,5 +1,5 @@
 ﻿@model MyProjectMyBlog.Models.Artists
-
+@Html.Partial("_Notifications")
 @{
     ViewBag.Title = "Delete";
 }
@@ -11,6 +11,15 @@
     <h4>Artists</h4>
     <hr />
     <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Alias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alias)
+        </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
@@ -28,12 +37,14 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.BornIn)
+            @Html.DisplayNameFor(model => model.Biography)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BornIn)
+            @Html.DisplayFor(model => model.Biography)
         </dd>
+
+        
 
     </dl>
 

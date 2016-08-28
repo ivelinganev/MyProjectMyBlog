@@ -15,17 +15,14 @@ namespace MyProjectMyBlog.Controllers
             Artists adele = new Artists();
             adele.FirstName = "Adel";
             adele.LastName = "Robinzon";
-            adele.BornIn = "Rousse, Bulgaria";
 
             Artists lynda = new Artists();
             lynda.FirstName = "Lynda";
             lynda.LastName = "Herzengraf";
-            lynda.BornIn = "Dússeldorf, Germany";
 
             Artists bieber = new Artists();
             bieber.FirstName = "Justin";
             bieber.LastName = "Bieber";
-            bieber.BornIn = "Canada";
 
             List<Artists> artists = new List<Artists>();
             artists.Add(adele);

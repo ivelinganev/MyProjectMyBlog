@@ -11,6 +11,14 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Alias)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Alias)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.FirstName)
         </dt>
 
@@ -26,12 +34,13 @@
             @Html.DisplayFor(model => model.LastName)
         </dd>
 
+
         <dt>
-            @Html.DisplayNameFor(model => model.BornIn)
+            @Html.DisplayNameFor(model => model.Biography)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BornIn)
+            <textarea disabled="disabled" rows="20" class="form-control text-box multi-line">@Model.Biography</textarea>
         </dd>
 
     </dl>

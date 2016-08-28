@@ -1,5 +1,6 @@
-﻿@model IEnumerable<MyProjectMyBlog.Models.Artists>
-
+﻿@using MyProjectMyBlog.Classes;
+@model IEnumerable<MyProjectMyBlog.Models.Artists>
+@Html.Partial("_Notifications")
 @{
     ViewBag.Title = "Index";
 }
@@ -21,9 +22,6 @@
             Last name
         </th>
         <th>
-            Born in
-        </th>
-        <th>
             Biography
         </th>
         <th>
@@ -35,7 +33,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-@Html.DisplayFor(modelItem => item.Alias)
+            @Html.DisplayFor(modelItem => item.Alias)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FirstName)
@@ -44,10 +42,7 @@
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.BornIn)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Biography)
+            @Utils.CutText(item.Biography)
         </td>
 
         <td>
